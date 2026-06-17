@@ -48,9 +48,9 @@ function character:control(dt)
   if self.controller_number < 1 or self.controller_number > 8 then return end
   local speed = self.on_ground and 25 or 15
   if love.joystick.isDown(self.controller_number, RETRO_DEVICE_ID_JOYPAD_UP) then
-    self.dy = self.dy - dt * speed
+    --
   elseif love.joystick.isDown(self.controller_number, RETRO_DEVICE_ID_JOYPAD_DOWN) then
-    self.dy = self.dy + dt * speed
+    --self.dy = self.dy + dt * speed
   end
   if love.joystick.isDown(self.controller_number, RETRO_DEVICE_ID_JOYPAD_LEFT) then
     self.dx = self.dx - dt * speed
@@ -67,6 +67,14 @@ function character:control(dt)
     end
   elseif self.jump_held then
     self.jump_held = false
+  end
+end
+
+function character:enter_door(map)
+  if love.joystick.isDown(self.controller_number, RETRO_DEVICE_ID_JOYPAD_UP) then
+    if map:get_char(self.x, self.y) == 'D' or map:get_char(self.x + 1, self.y) == 'D' then
+      return true
+    end    
   end
 end
 
