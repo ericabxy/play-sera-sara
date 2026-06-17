@@ -1,5 +1,4 @@
 local _ = require('src.const_libretro')
-local simple_characters = require('gfx.simple_characters')
 local simple_sara = require('gfx.simple_sara')
 
 local JUMPTIMEMAX = .25
