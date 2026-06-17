@@ -20,6 +20,14 @@ local foreground = unitcharmap:new{
   }
 }
 
+function foreground:set_plain()
+  self.texture = platformer_blocks_foreground.plain
+end
+
+function foreground:set_castle()
+  self.texture = platformer_blocks_foreground.castle
+end
+
 function foreground:new(o)
   o = o or {}
   setmetatable(o, self)

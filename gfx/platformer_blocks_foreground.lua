@@ -7,5 +7,7 @@ end
 
 return {
   plain = love.graphics.newImage('share/harvett_platformer_blocks_foreground_plain.png'),
+  --underground
+  castle = love.graphics.newImage('share/harvett_platformer_blocks_foreground_castle.png'),
   tiles = quads
 }

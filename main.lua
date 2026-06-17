@@ -24,6 +24,8 @@ function love.update(dt)
     bg:load_string(require('dat.world1-4_bg'))
     fg:load_string(require('dat.world1-4_fg'))
     love.graphics.setBackgroundColor(0, 0, 0)
+    bg:set_castle()
+    fg:set_castle()
   end
   mainwindow.x = player1.x - 10
   mainwindow.y = player1.y - 7.5

@@ -7,22 +7,22 @@ local background = unitcharmap:new{
     ['q'] = platformer_blocks_background.tiles[1],
     ['w'] = platformer_blocks_background.tiles[2],
     ['e'] = platformer_blocks_background.tiles[3],
+    ['.'] = platformer_blocks_background.tiles[5],
     ['~'] = platformer_blocks_background.tiles[6],
-    ['c'] = platformer_blocks_background.tiles[7],
-    ['C'] = platformer_blocks_background.tiles[8],
-    [':'] = platformer_blocks_background.tiles[9],
-    ['.'] = platformer_blocks_background.tiles[12],
-    ['W'] = platformer_blocks_background.tiles[17],
-    ['{'] = platformer_blocks_background.tiles[18],
-    ['}'] = platformer_blocks_background.tiles[19],
-    ['|'] = platformer_blocks_background.tiles[20],
+    ['c'] = platformer_blocks_background.tiles[8],
+    ['C'] = platformer_blocks_background.tiles[9],
+    [':'] = platformer_blocks_background.tiles[10],
+    ['W'] = platformer_blocks_background.tiles[19],
+    ['{'] = platformer_blocks_background.tiles[20],
+    ['}'] = platformer_blocks_background.tiles[21],
+    ['|'] = platformer_blocks_background.tiles[22],
     ['^'] = platformer_blocks_background.tiles[24],
-    ['d'] = platformer_blocks_background.tiles[29],
-    ['B'] = platformer_blocks_background.tiles[30],
+    ['d'] = platformer_blocks_background.tiles[32],
+    ['B'] = platformer_blocks_background.tiles[33],
     ['"'] = platformer_blocks_background.tiles[35],
     ['/'] = platformer_blocks_background.tiles[34],
     ['\\'] = platformer_blocks_background.tiles[36],
-    ['D'] = platformer_blocks_background.tiles[40],
+    ['D'] = platformer_blocks_background.tiles[44],
     ['`'] = platformer_blocks_background.tiles[45],
     ['\''] = platformer_blocks_background.tiles[47],
     ['b'] = platformer_blocks_background.tiles[56],
@@ -30,6 +30,14 @@ local background = unitcharmap:new{
     ['m'] = platformer_blocks_background.tiles[58],
   }
 }
+
+function background:set_plain()
+  self.texture = platformer_blocks_background.plain
+end
+
+function background:set_castle()
+  self.texture = platformer_blocks_background.castle
+end
 
 function background:new(o)
   o = o or {}
