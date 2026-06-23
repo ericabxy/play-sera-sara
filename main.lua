@@ -1,9 +1,9 @@
 local background = require('src.background')
 local foreground = require('src.foreground')
 local unitwindow = require('src.unitwindow')
-local character = require('src.character')
+local character = require('src.hero')
 
-local player1 = character:new{ controller_number = 1, x = 200, y = 2 }
+local player1 = character:new{ controller_number = 1, x = 2, y = 2 }
 local mainwindow = unitwindow:new()
 local bg = background:new()
 local fg = foreground:new()
