@@ -1,7 +1,7 @@
 local _ = require('src.const_libretro')
 
 local gfx_texture1 = love.graphics.newImage('share/grafxkid_old_hero.png')
---local texture2 = 
+local gfx_texture2 = love.graphics.newImage('share/grafxkid_old_hero_mirror.png') 
 local gfx_idle = {
   [0] = love.graphics.newQuad(16, 16, 16, 16, 128, 112),
   love.graphics.newQuad(32, 16, 16, 16, 128, 112),
@@ -40,8 +40,11 @@ local hero = {
 }
 
 function hero:animate(dt)
-  local n = self.facing
-  if self.dx < 0 then n = 2 elseif self.dx > 0 then n = 1 end
+  if self.dx > 0 then
+    self.texture = gfx_texture1
+  elseif self.dx < 0 then
+    self.texture = gfx_texture2
+  end
   if not self.on_ground then
     if self.dy < 0 then
       self.quad = gfx_jump[1]
