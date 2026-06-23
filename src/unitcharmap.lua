@@ -11,6 +11,7 @@ local unitcharmap = {
 function unitcharmap:get_char(x, y)
   x, y = math.floor(x) + 1, math.floor(y) + 1
   if self.charmap[x] and self.charmap[x][y] then return self.charmap[x][y] end
+  if self.charmap[x] then return '.' end
 end
 
 function unitcharmap:set_char(x, y, c)

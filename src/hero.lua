@@ -52,7 +52,7 @@ function hero:animate(dt)
       self.quad = gfx_jump[2]
     end
   elseif self.on_ground and math.abs(self.dx) > .5 then
-    local frame = math.floor(love.timer.getTime() * 5) % 6
+    local frame = math.floor(love.timer.getTime() * 15) % 6
     self.quad = gfx_move[frame]
   else
     local frame = math.floor(love.timer.getTime() * 5) % 4
@@ -64,9 +64,9 @@ function hero:clamp(rectangle)
   if self.x < rectangle.x then self.x = rectangle.x
   elseif self.x + 1 > rectangle.x + rectangle.width then self.x = rectangle.x + rectangle.width - 1
   end
-  if self.y < rectangle.y then self.y = rectangle.y
-  elseif self.y + 1 > rectangle.y + rectangle.height then self.y = rectangle.y + rectangle.height - 1
-  end
+  --if self.y < rectangle.y then self.y = rectangle.y
+  --elseif self.y + 1 > rectangle.y + rectangle.height then self.y = rectangle.y + rectangle.height - 1
+  --end
 end
 
 function hero:control(dt)

@@ -8,6 +8,8 @@ local foreground = unitcharmap:new{
     ['B'] = platformer_blocks_foreground.tiles[2],
     ['<'] = platformer_blocks_foreground.tiles[7],
     ['>'] = platformer_blocks_foreground.tiles[8],
+    ['5'] = platformer_blocks_foreground.tiles[9],
+    ['1'] = platformer_blocks_foreground.tiles[10],  -- Upper horizontal pipe.
     ['#'] = platformer_blocks_foreground.tiles[11],
     ['?'] = platformer_blocks_foreground.tiles[12],
     ['o'] = platformer_blocks_foreground.tiles[15],
@@ -16,7 +18,17 @@ local foreground = unitcharmap:new{
     ['.'] = platformer_blocks_foreground.tiles[25],
     ['['] = platformer_blocks_foreground.tiles[29],
     [']'] = platformer_blocks_foreground.tiles[30],
+    ['4'] = platformer_blocks_foreground.tiles[31],
+    ['0'] = platformer_blocks_foreground.tiles[32],  -- Lower horizontal pipe.
     ['|'] = platformer_blocks_foreground.tiles[42],
+    ['Q'] = platformer_blocks_foreground.tiles[51],  -- Upper-left vertical corner pipe.
+    ['M'] = platformer_blocks_foreground.tiles[52],  -- Upper-right vertical corner pipe.
+    ['P'] = platformer_blocks_foreground.tiles[53],  -- Upper-left horizontal corner pipe.
+    ['L'] = platformer_blocks_foreground.tiles[54],  -- Upper-right horizontal corner pipe.
+    ['I'] = platformer_blocks_foreground.tiles[73],  -- Lower-left vertical corner pipe.
+    ['E'] = platformer_blocks_foreground.tiles[74],  -- Lower-right vertical corner pipe.
+    ['H'] = platformer_blocks_foreground.tiles[75],  -- Lower-left horizontal corner pipe.
+    ['D'] = platformer_blocks_foreground.tiles[76],  -- Lower-right horizontal corner pipe.
   }
 }
 
