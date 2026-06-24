@@ -1,5 +1,6 @@
 local _ = require('src.const_libretro')
 
+local sfx_jump = love.audio.newSource('share/bart_8-bit_platformer_sfx_jump.wav', 'static')
 local gfx_texture1 = love.graphics.newImage('share/grafxkid_old_hero.png')
 local gfx_texture2 = love.graphics.newImage('share/grafxkid_old_hero_mirror.png') 
 local gfx_idle = {
@@ -84,6 +85,7 @@ function hero:control(dt)
   end
   if love.joystick.isDown(self.controller_number, RETRO_DEVICE_ID_JOYPAD_A) then
     if self.on_ground and not self.jump_held then
+      self:jump()
       self.dy = -15
       self.jump_held = dt
     elseif not self.on_ground and self.jump_held and self.jump_held < JUMPTIMEMAX then  -- Can hold jump for a split second.
@@ -103,6 +105,12 @@ function hero:enter_door(map)
   end
 end
 
+function hero:jump()
+  for _, sfx in ipairs(self.sfx_jump) do
+    if not sfx:isPlaying() then love.audio.play(sfx) break end
+  end
+end
+
 function hero:move(dt, map)
   local dxmax = 10
   local dymax = 100
@@ -117,10 +125,10 @@ function hero:move(dt, map)
   local dx = self.x + self.dx * dt
   local dy = self.y + self.dy * dt
   -- Pickup gems and other items.
-  if map:get_char(dx, dy) == 'o' then map:set_char(dx, dy, '.') end
-  if map:get_char(dx, dy + 1) == 'o' then map:set_char(dx, dy + 1, '.') end
-  if map:get_char(dx + 1, dy) == 'o' then map:set_char(dx + 1, dy, '.') end
-  if map:get_char(dx + 1, dy + 1) == 'o' then map:set_char(dx + 1, dy + 1, '.') end
+  if map:get_char(dx, dy) == 'o' then map:set_char(dx, dy, '.') self:pickup_coin() end
+  if map:get_char(dx, dy + 1) == 'o' then map:set_char(dx, dy + 1, '.') self:pickup_coin() end
+  if map:get_char(dx + 1, dy) == 'o' then map:set_char(dx + 1, dy, '.') self:pickup_coin() end
+  if map:get_char(dx + 1, dy + 1) == 'o' then map:set_char(dx + 1, dy + 1, '.') self:pickup_coin() end
   -- Check for and resolve tile collisions.
   if self.dx <= 0 then
     if map:get_char(dx, self.y) ~= '.' or map:get_char(dx, self.y + .9) ~= '.' then
@@ -139,6 +147,9 @@ function hero:move(dt, map)
       dy = math.ceil(dy)
       self.dy = 0
       if self.jump_held then
+        for _, sfx in ipairs(self.sfx_jump) do
+          if sfx:isPlaying() then love.audio.stop(sfx) end
+        end
         self.jump_held = JUMPTIMEMAX
       end
     end
@@ -164,12 +175,30 @@ function hero:paint(xoffset, yoffset)
   )
 end
 
+function hero:pickup_coin()
+  for _, sfx in ipairs(self.sfx_pickup_coin) do
+    if not sfx:isPlaying() then love.audio.play(sfx) break end
+  end
+end
+
 -- Constructor.
 function hero:new(o)
   o = o or {}
   setmetatable(o, self)
   self.__index = self
   -- Initialization.
+  self.sfx_jump = {
+    love.audio.newSource('share/bart_8-bit_platformer_sfx_jump.wav', 'static'),
+    love.audio.newSource('share/bart_8-bit_platformer_sfx_jump.wav', 'static'),
+    love.audio.newSource('share/bart_8-bit_platformer_sfx_jump.wav', 'static')
+  }
+  for _, sfx in ipairs(self.sfx_jump) do sfx:setVolume(.5) end
+  self.sfx_pickup_coin = {
+    love.audio.newSource('share/bart_8-bit_platformer_sfx_pickup_coin.wav', 'static'),
+    love.audio.newSource('share/bart_8-bit_platformer_sfx_pickup_coin.wav', 'static'),
+    love.audio.newSource('share/bart_8-bit_platformer_sfx_pickup_coin.wav', 'static')
+  }
+  for _, sfx in ipairs(self.sfx_pickup_coin) do sfx:setVolume(.5) end
   return o
 end
 

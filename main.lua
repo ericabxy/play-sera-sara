@@ -5,6 +5,9 @@ local foreground = require('src.foreground')
 local unitwindow = require('src.unitwindow')
 local character = require('src.hero')
 
+local bgm = love.audio.newSource('share/bart_random_silly_chip_song.ogg', 'stream')
+bgm:setVolume(.9)
+bgm:setLooping(true)
 local levels = {
   [0] = level_01,
   level_02,
@@ -20,6 +23,7 @@ fg:load_string(levels[level][2])
 
 function love.load()
   love.graphics.setBackgroundColor(104, 166, 255)
+  love.audio.play(bgm)
 end
 
 function love.update(dt)
